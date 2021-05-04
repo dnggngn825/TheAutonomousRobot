@@ -1,0 +1,20 @@
+<launch>
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="encoder_monitor_launch_group">
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_r"
+			output = "screen"
+			type   = "encoder_monitor_r"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_l"
+			output = "screen"
+			type   = "encoder_monitor_r"
+		/>
+	</group>
+
+</launch>

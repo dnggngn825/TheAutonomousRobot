@@ -1,0 +1,5 @@
+
+#ifndef POLOLU_SMC_G2_INTERNAL_PARA_H
+#define POLOLU_SMC_G2_INTERNAL_PARA_H
+
+# endif 

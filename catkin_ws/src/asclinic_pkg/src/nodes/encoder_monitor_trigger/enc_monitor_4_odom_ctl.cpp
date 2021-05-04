@@ -1,0 +1,118 @@
+/* ==================================================
+AUTHORSHIP STATEMENT
+The University of Melbourne
+School of Engineering
+ELEN90090: Autonomous Clinic Systems
+Author: Quang Trung Le (987445)
+================================================== */
+
+
+/* ==================================================
+FUNCTIONALITY: This node subscribes to the encoder counters from 2 wheels and publishes the angular velocities to the motor controller.
+INPUT: Encoder counter left/right
+OUTPUT: Motor angular velocity 
+================================================== */
+
+
+// ==================================================
+// Including library
+// ==================================================
+#include "ros/ros.h"
+#include <ros/package.h>
+
+// Message packages
+#include "std_msgs/UInt32.h"
+#include "std_msgs/UInt16.h"
+
+#include "amr/amr.h"
+
+// Namespacing the package
+using namespace asclinic_pkg;
+
+
+// ==================================================
+// Constants/Variables/Functions 
+// ==================================================
+ros::Publisher publisher_encoder_monitor_data;
+float sampling_time_in_sec = AMR_TIMER_4_SYSTEM_CONTROL;
+
+Pololu_SMC_G2_Encoder encoder_l = Pololu_SMC_G2_Encoder();
+Pololu_SMC_G2_Encoder encoder_r = Pololu_SMC_G2_Encoder();
+
+bool received_data_encoder_l = false;
+bool received_data_encoder_r = false;
+
+// Functions
+void subscriberCallbackForMotorLeft(const std_msgs::UInt16& msg);
+void subscriberCallbackForMotorRight(const std_msgs::UInt16& msg);
+void publishRotationAngleForOdometryControl();
+
+
+// ==================================================
+// MAIN Program
+// ==================================================
+int main(int argc, char* argv[])
+{
+    ros::init(argc, argv, amr_node::ENCODER_MONITOR_4_ODOM_CONTROL);
+    ros::NodeHandle nd;
+
+    publisher_encoder_monitor_data = nd.advertise<MotorRotationAngle>(amr_topic::ENCODER_DATA_4_ODOMETRY_CONTROL, 10, false);
+
+    ros::Subscriber subscriber_4_motor_l = nd.subscribe(amr_topic::ENCODER_DATA_4_ODOMETRY_CONTROL_L, 1, subscriberCallbackForMotorLeft);
+    ros::Subscriber subscriber_4_motor_r = nd.subscribe(amr_topic::ENCODER_DATA_4_ODOMETRY_CONTROL_R, 1, subscriberCallbackForMotorRight);
+
+    while (ros::ok())
+    {
+        publishRotationAngleForOdometryControl();
+        ros::spinOnce();
+    }
+}
+
+
+// ==================================================
+// CALLBACK Functions
+// ==================================================
+/**
+ * @brief Callback function that subscribes to Encoder counter from left wheel encoder
+ * @param msg Encoder counter
+ */
+void subscriberCallbackForMotorLeft(const std_msgs::UInt16& msg)
+{
+    int encoder_counter_4_motor_l = msg.data;
+
+    encoder_l.set_angular_velocity_rpm(encoder_counter_4_motor_l, sampling_time_in_sec);
+    received_data_encoder_l = true;
+}
+
+/**
+ * @brief Callback function that subscribes to Encoder counter from right wheel encoder
+ * @param msg Encoder counter
+ */
+void subscriberCallbackForMotorRight(const std_msgs::UInt16& msg)
+{
+    int encoder_counter_4_motor_r = msg.data;
+
+    encoder_r.set_angular_velocity_rpm(encoder_counter_4_motor_r, sampling_time_in_sec);
+    received_data_encoder_r = true;
+}
+
+
+// ==================================================
+// Other Functions
+// ==================================================
+/**
+ * @brief Publish angular velocity of 2 wheels, if fully received data from both encoders.
+ */
+void publishRotationAngleForOdometryControl()
+{
+    if (received_data_encoder_l && received_data_encoder_r)
+    {
+        MotorRotationAngle motor_rotation_angle = MotorRotationAngle();
+        motor_rotation_angle.rotation_angle_motor_l = encoder_l.get_rotation_angle_rad(sampling_time_in_sec);
+        motor_rotation_angle.rotation_angle_motor_r = encoder_r.get_rotation_angle_rad(sampling_time_in_sec);
+
+        publisher_encoder_monitor_data.publish(motor_rotation_angle);
+        received_data_encoder_l = false;
+        received_data_encoder_r = false;
+    }
+}

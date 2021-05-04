@@ -1,0 +1,2 @@
+int16 pwm_duty_cycle_motor_l
+int16 pwm_duty_cycle_motor_r
