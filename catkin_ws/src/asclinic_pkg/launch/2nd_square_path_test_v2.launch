@@ -1,0 +1,116 @@
+<launch>
+
+        <node 
+            name="motion_planning_v2_copy" 
+            pkg="asclinic_pkg" 
+            type="motion_planning_v2_copy" 
+            output="screen"
+        />
+        
+        <node 
+            name="publish_Path_ROS" 
+            pkg="asclinic_pkg" 
+            type="get_path_csvFile.py" 
+            output="screen"
+        />
+
+
+        <node 
+            name="traj_track_controller_v2_copy" 
+            pkg="asclinic_pkg" 
+            type="trajectory_track_controller_v2_copy" 
+            output="screen"
+        />
+
+
+
+        <node
+			pkg    = "asclinic_pkg"
+			name   = "timer_monitor"
+			output = "screen"
+			type   = "timer_monitor"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "motor_dynamics"
+			output = "screen"
+			type   = "motor_dynamics"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "motor_controller_v2"
+			output = "screen"
+			type   = "motor_controller_v2"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_r"
+			output = "screen"
+			type   = "encoder_monitor_r"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_l"
+			output = "screen"
+			type   = "encoder_monitor_l"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_motor_ctl"
+			output = "screen"
+			type   = "enc_monitor_4_motor_ctl"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_odom_ctl"
+			output = "screen"
+			type   = "enc_monitor_4_odom_ctl"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "pose_estimator_fusion_v2"
+			output = "screen"
+			type   = "pose_estimator_fusion_v2"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "pose_estimator_cam"
+			output = "screen"
+			type   = "pose_estimator_cam.py"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "camera_monitor"
+			output = "screen"
+			type   = "camera_monitor.py"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "servo_controller_v2"
+			output = "screen"
+			type   = "servo_controller_v2"
+		/>
+
+		<!-- <node
+			pkg    = "asclinic_pkg"
+			name   = "ProximitySensor"
+			output = "screen"
+			type   = "ProximitySensor"
+		/> -->
+        
+
+
+    
+    
+
+</launch>

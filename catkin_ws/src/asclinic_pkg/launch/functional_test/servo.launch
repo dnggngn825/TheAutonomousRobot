@@ -1,0 +1,22 @@
+<launch>
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="inner_loop_launch_group">
+		
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "ref_pwm_servo_publish"
+			output = "screen"
+			type   = "ref_pwm_servo_publish"
+		/>
+
+        <node
+			pkg    = "asclinic_pkg"
+			name   = "servo_dynamics"
+			output = "screen"
+			type   = "servo_dynamics"
+		/>
+
+	</group>
+
+</launch>

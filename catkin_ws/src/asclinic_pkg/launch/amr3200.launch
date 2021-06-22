@@ -1,0 +1,101 @@
+<launch>
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="amr3200_launch_group">
+		<param
+			name   = "motor_control_mode"
+			value  = "0"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "timer_monitor"
+			output = "screen"
+			type   = "timer_monitor"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "motor_dynamics"
+			output = "screen"
+			type   = "motor_dynamics"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "ref_pwm_publish"
+			output = "screen"
+			type   = "ref_pwm_publish"
+		/>
+
+
+		<!-- Encoder Processing -->
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_l_channel_a"
+			output = "screen"
+			type   = "enc_monitor_l_channel_a"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_l_channel_b"
+			output = "screen"
+			type   = "enc_monitor_l_channel_b"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_r_channel_a"
+			output = "screen"
+			type   = "enc_monitor_r_channel_a"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_r_channel_b"
+			output = "screen"
+			type   = "enc_monitor_r_channel_b"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_l_3200"
+			output = "screen"
+			type   = "enc_monitor_l_3200"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_r_3200"
+			output = "screen"
+			type   = "enc_monitor_r_3200"
+		/>
+
+		<!-- Encoder monitor for inner loop -->
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_motor_ctl_3200"
+			output = "screen"
+			type   = "enc_monitor_4_motor_ctl_3200"
+		/>
+
+		<!-- Encoder monitor for outer loop -->
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_odom_ctl_3200"
+			output = "screen"
+			type   = "enc_monitor_4_odom_ctl_3200"
+		/>
+
+		<!-- Odometry -->
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "odometry_estimator"
+			output = "screen"
+			type   = "odometry_estimator"
+		/>
+
+	</group>
+
+</launch>

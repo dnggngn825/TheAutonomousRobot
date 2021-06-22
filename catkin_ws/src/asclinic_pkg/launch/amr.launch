@@ -2,6 +2,19 @@
 
 	<!-- START A GROUP WITH NAMESPACE "template" -->
 	<group ns="amr_launch_group">
+		<param
+			name   = "motor_control_mode"
+			value  = "0"
+		/>
+		<param
+			name   = "encoder_trigger_mode"
+			value  = "1"
+		/>
+		<param
+			name   = "encoder_monitor_mode"
+			value  = "1"
+		/>
+
 		<node
 			pkg    = "asclinic_pkg"
 			name   = "timer_monitor"
@@ -18,9 +31,9 @@
 
 		<node
 			pkg    = "asclinic_pkg"
-			name   = "motor_controller_sample"
+			name   = "ref_pwm_publish"
 			output = "screen"
-			type   = "motor_controller_sample"
+			type   = "ref_pwm_publish"
 		/>
 
 		<node

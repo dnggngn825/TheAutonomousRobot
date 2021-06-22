@@ -16,9 +16,10 @@ Author: Quang Trung Le (987445)
 
 // ROBOT ENCODER INFO
 #define POLOLU_SMC_G2_ENCODER_RESOLUTION_SESC_NO_GEARBOX                    16 // Single edge single channel
-#define POLOLU_SMC_G2_ENCODER_RESOLUTION_MESC_NO_GEARBOX                    32 // Single edge single channel
+#define POLOLU_SMC_G2_ENCODER_RESOLUTION_MESC_NO_GEARBOX                    32 // Multi edges single channel
 #define POLOLU_SMC_G2_ENCODER_RESOLUTION_MEMC_NO_GEARBOX                    64 // Multi edges multi channels
 #define POLOLU_SMC_G2_ENCODER_RESOLUTION_SESC_W_GEARBOX                     (POLOLU_SMC_G2_ENCODER_RESOLUTION_SESC_NO_GEARBOX*POLOLU_SMC_G2_MOTOR_GEARBOX) // 800
+#define POLOLU_SMC_G2_ENCODER_RESOLUTION_MESC_W_GEARBOX                     (POLOLU_SMC_G2_ENCODER_RESOLUTION_MESC_NO_GEARBOX*POLOLU_SMC_G2_MOTOR_GEARBOX) // 1600
 #define POLOLU_SMC_G2_ENCODER_RESOLUTION_MEMC_W_GEARBOX                     (POLOLU_SMC_G2_ENCODER_RESOLUTION_MEMC_NO_GEARBOX*POLOLU_SMC_G2_MOTOR_GEARBOX) // 3200
 
       
@@ -39,7 +40,11 @@ Author: Quang Trung Le (987445)
 #define POLOLU_SMC_G2_ENCODER_POLLING_DF_FREQUENCY_MEMC_W_GEARBOX           240000                                
 
 
-#define POLOLU_SMC_G2_ENCODER_CHANNEL_STATE_HIGH                            1
-#define POLOLU_SMC_G2_ENCODER_CHANNEL_STATE_LOW                             0
+// #define POLOLU_SMC_G2_ENCODER_CHANNEL_STATE_HIGH                            1
+// #define POLOLU_SMC_G2_ENCODER_CHANNEL_STATE_LOW                             0
+
+// ENCODER DIRECTION
+#define POLOLU_SMC_G2_ENCODER_DIR_CHANNEL_A2B_MOTOR_R                       -1 // +1: equal cw; -1: equal ccw 
+#define POLOLU_SMC_G2_ENCODER_DIR_CHANNEL_A2B_MOTOR_L                       -1 // +1: equal cw; -1: equal ccw 
 
 #endif

@@ -1,0 +1,23 @@
+<launch>
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="test_launch_group">
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "test_2"
+			output = "screen"
+			type   = "test_2"
+		/>
+
+        <param
+			name   = "show_ros_info_flag"
+			value  = "true"
+		/>
+
+		<param
+			name   = "mode"
+			value  = "1"
+		/>
+	</group>
+
+</launch>

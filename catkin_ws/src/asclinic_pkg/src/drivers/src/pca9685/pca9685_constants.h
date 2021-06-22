@@ -115,6 +115,12 @@
 #define PCA9685_PULSE_ON_OFF_MIN        0 /**< Minimum count for when the pulse of a channel turns on */
 #define PCA9685_PULSE_ON_OFF_MAX     4095 /**< Minimum count for when the pulse of a channel turns off, i.e., (2^12-1) as per the data sheet */
 
+// USER DEFINED PWN LIMITS
+#define PCA9685_PULSE_DEFAULT   1500 
+#define PCA9685_PULSE_MIN       500
+#define PCA9685_PULSE_MAX       2500
 
+#define PCA9685_PULSE_POS_0_DEG     (PCA9685_PULSE_MIN)
+#define PCA9685_PULSE_POS_180_DEG   (PCA9685_PULSE_MAX)
 
 #endif // PCA9685_CONSTANTS_H

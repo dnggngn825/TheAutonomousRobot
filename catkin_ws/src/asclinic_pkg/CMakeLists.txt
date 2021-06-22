@@ -80,20 +80,13 @@ add_message_files(
   DIRECTORY msg
 
   FILES
-  TemplateMessage.msg
+  TransformationMatrix.msg
   AmrPose.msg
   MotorAngularVelocity.msg
   MotorAngularVelocityPWM.msg
   MotorRotationAngle.msg
-)
-
-add_message_files(
-  DIRECTORY msg/sensor_msgs
-
-  FILES 
-  Encoder.msg
-  Velocity.msg
-  Vector3.msg
+  ServoPulseWidth.msg
+  pathCommand.msg
 )
 
 add_message_files(
@@ -204,51 +197,61 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/asclinic_node.cpp)
 
-# TEMPLATE CPP NODE:
-# add_executable(template_cpp_node              src/nodes/templates/template_cpp_node.cpp)
-# add_executable(template_cpp_node_minimal      src/nodes/templates/template_cpp_node_minimal.cpp)
-# add_executable(template_gpio_event_triggered  src/nodes/templates/template_gpio_event_triggered.cpp)
-# add_executable(template_gpio_polling          src/nodes/templates/template_gpio_polling.cpp)
-# add_executable(template_i2c_internal          src/nodes/templates/template_i2c_internal.cpp
-#                                               src/drivers/src/i2c_driver/i2c_driver.cpp
-#                                               src/drivers/src/pololu_smc_g2/pololu_smc_g2.cpp)
-# add_executable(template_i2c_external          src/nodes/templates/template_i2c_external.cpp
-#                                               src/drivers/src/i2c_driver/i2c_driver.cpp
-#                                               src/drivers/src/vl53l1x/vl53l1x.cpp
-#                                               src/drivers/src/vl53l1x/core/VL53L1X_api.c
-#                                               src/drivers/src/vl53l1x/platform/vl53l1_platform.c)
 
 # NEW CPP NODES:
 # Added by Quang Trung Le
-add_executable(timer_monitor                  src/nodes/timer_monitor.cpp)
-add_executable(motor_controller               src/nodes/motor_controller.cpp)
-add_executable(motor_dynamics                 src/nodes/motor_dynamics.cpp
+add_executable(timer_monitor                  src/nodes/main/timer_monitor.cpp)
+add_executable(motor_controller               src/nodes/main/motor_controller.cpp)
+add_executable(motor_dynamics                 src/nodes/main/motor_dynamics.cpp
                                               src/drivers/src/i2c_driver/i2c_driver.cpp
-                                              src/drivers/src/pololu_smc_g2/pololu_smc_g2.cpp)
-add_executable(encoder_monitor_r              src/nodes/encoder_monitor_trigger/encoder_monitor_r.cpp
+                                              src/drivers/src/pololu_smc_g2/pololu_smc_g2.cpp
+                                              src/drivers/src/pca9685/pca9685.cpp)
+add_executable(encoder_monitor_r              src/nodes/main/encoder_monitor/encoder_monitor_r.cpp
                                               src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
-add_executable(encoder_monitor_l              src/nodes/encoder_monitor_trigger/encoder_monitor_l.cpp
+add_executable(encoder_monitor_l              src/nodes/main/encoder_monitor/encoder_monitor_l.cpp
                                               src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
-add_executable(enc_monitor_4_motor_ctl        src/nodes/encoder_monitor_trigger/enc_monitor_4_motor_ctl.cpp
+add_executable(enc_monitor_4_motor_ctl        src/nodes/main/encoder_monitor/enc_monitor_4_motor_ctl.cpp
                                               src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
-add_executable(enc_monitor_4_odom_ctl         src/nodes/encoder_monitor_trigger/enc_monitor_4_odom_ctl.cpp
+add_executable(enc_monitor_4_odom_ctl         src/nodes/main/encoder_monitor/enc_monitor_4_odom_ctl.cpp
                                               src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
-# add_executable(encoder_monitor                src/nodes/encoder_monitor_trigger/encoder_monitor.cpp
+# add_executable(servo_dynamics                 src/nodes/main/servo/servo_dynamics.cpp
+#                                               src/drivers/src/i2c_driver/i2c_driver.cpp
+#                                               src/drivers/src/pololu_smc_g2/pololu_smc_g2.cpp
+#                                               src/drivers/src/pca9685/pca9685.cpp)
+# add_executable(servo_controller               src/nodes/main/servo/servo_controller.cpp)
+# add_executable(pose_estimator_fusion          src/nodes/main/pose_estimator_fusion.cpp)
+# add_executable(encoder_subscriber             src/nodes/miscellaneous/subtasks/encoder_subscriber.cpp
 #                                               src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
-add_executable(odometry_estimator             src/nodes/odometry_estimator.cpp)
-add_executable(motor_controller_sample        src/nodes/motor_controller_sample.cpp)
-add_executable(encoder_subscriber             src/nodes/encoder_subscriber.cpp
-                                              src/drivers/src/pololu_smc_g2_encoder/pololu_smc_g2_encoder.cpp)
+
 
 # Added by Hai Dang Nguyen
-add_executable(motion_planning                src/nodes/motion_planning.cpp)
-add_executable(trajectory_track_controller    src/nodes/trajectory_track_controller.cpp)
+# add_executable(motion_planning                src/nodes/motion_planning.cpp)
+# add_executable(trajectory_track_controller    src/nodes/trajectory_track_controller.cpp)
+# add_executable(servo_motor                    src/nodes/servo_motor.cpp
+#                                               src/drivers/src/i2c_driver/i2c_driver.cpp
+#                                               src/drivers/src/pca9685/pca9685.cpp)
+add_executable(ProximitySensor                src/nodes/ProximitySensor.cpp)
 
+# NODE 4 Functional Testing
+add_executable(ref_pwm_publish                src/nodes/functional_test/ref_pwm_publish.cpp)
+add_executable(ref_ang_vel_publish            src/nodes/functional_test/ref_ang_vel_publish.cpp)
+add_executable(ref_pwm_servo_publish          src/nodes/functional_test/ref_pwm_servo_publish.cpp)
 
-# NODE 4 Testing
-# add_executable(test_1                         src/nodes/testing/data/test1.cpp)
-add_executable(test_2                         src/nodes/miscellaneous/testing/data_test/test2.cpp)
-add_executable(test_3                         src/nodes/miscellaneous/testing/data_test/test3.cpp)
+# V2
+add_executable(motion_planning_v2               src/nodes/motion_planning_v2.cpp)
+add_executable(servo_controller_v2              src/nodes/main/servo/servo_controller_v2.cpp)
+add_executable(trajectory_track_controller_v2   src/nodes/trajectory_track_controller_v2.cpp)
+add_executable(pose_estimator_fusion_v2         src/nodes/main/pose_estimator_fusion_v2.cpp)
+add_executable(pose_estimator_fusion_v22         src/nodes/main/pose_estimator_fusion_v22.cpp)
+
+add_executable(motor_controller_v2              src/nodes/main/motor_controller_v2.cpp)
+add_executable(motion_planning_v3               src/nodes/motion_planning_v3.cpp)
+add_executable(trajectory_track_controller_v3   src/nodes/trajectory_track_controller_v3.cpp)
+add_executable(trajectory_track_controller_v22   src/nodes/trajectory_track_controller_v22.cpp)
+
+# copy
+add_executable(motion_planning_v2_copy               src/nodes/motion_planning_v2_copy.cpp)
+add_executable(trajectory_track_controller_v2_copy  src/nodes/trajectory_track_controller_v2_copy.cpp)
 
 
 ## Rename C++ executable without prefix
@@ -261,14 +264,6 @@ add_executable(test_3                         src/nodes/miscellaneous/testing/da
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-# TEMPLATE CPP NODE:
-# add_dependencies(template_cpp_node              asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(template_cpp_node_minimal      asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(template_gpio_event_triggered  asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(template_gpio_polling          asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(template_i2c_internal          asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(template_i2c_external          asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-
 # NEW CPP NODES:
 # Added by Quang Trung Le
 add_dependencies(timer_monitor                  asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
@@ -278,20 +273,37 @@ add_dependencies(encoder_monitor_r              asclinic_pkg_generate_messages_c
 add_dependencies(encoder_monitor_l              asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 add_dependencies(enc_monitor_4_motor_ctl        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 add_dependencies(enc_monitor_4_odom_ctl         asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-# add_dependencies(encoder_monitor                asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(odometry_estimator             asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(motor_controller_sample        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(encoder_subscriber             asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(servo_dynamics                 asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(servo_controller               asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(pose_estimator_fusion          asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(encoder_subscriber             asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 
 # Added by Hai Dang Nguyen
-add_dependencies(motion_planning        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(trajectory_track_controller        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(motion_planning                    asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(trajectory_track_controller        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# add_dependencies(servo_motor                        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(ProximitySensor                        asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 
+# NODES 4 Funcitonal Testing
+add_dependencies(ref_pwm_publish                asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(ref_ang_vel_publish            asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(ref_pwm_servo_publish          asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 
-# NODES 4 Testing
-# add_dependencies(test_1                         asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(test_2                         asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
-add_dependencies(test_3                         asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+# V2
+add_dependencies(motion_planning_v2                 asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(servo_controller_v2                asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(trajectory_track_controller_v2     asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(pose_estimator_fusion_v2           asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(pose_estimator_fusion_v22           asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+
+add_dependencies(motor_controller_v2                asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(motion_planning_v3                 asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(trajectory_track_controller_v3     asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(trajectory_track_controller_v22     asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+
+# copy
+add_dependencies(motion_planning_v2_copy                 asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
+add_dependencies(trajectory_track_controller_v2_copy     asclinic_pkg_generate_messages_cpp ${catkin_EXPORTED_TARGETS})
 
 
 
@@ -299,14 +311,6 @@ add_dependencies(test_3                         asclinic_pkg_generate_messages_c
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-
-# TEMPLATE CPP NODE
-# target_link_libraries(template_cpp_node              ${catkin_LIBRARIES})
-# target_link_libraries(template_cpp_node_minimal      ${catkin_LIBRARIES})
-# target_link_libraries(template_gpio_event_triggered  ${catkin_LIBRARIES} -lgpiod)
-# target_link_libraries(template_gpio_polling          ${catkin_LIBRARIES} -lgpiod)
-# target_link_libraries(template_i2c_internal          ${catkin_LIBRARIES})
-# target_link_libraries(template_i2c_external          ${catkin_LIBRARIES})
 
 # NEW CPP NODES:
 # Added by Quang Trung Le
@@ -317,20 +321,38 @@ target_link_libraries(encoder_monitor_r              ${catkin_LIBRARIES} -lgpiod
 target_link_libraries(encoder_monitor_l              ${catkin_LIBRARIES} -lgpiod)
 target_link_libraries(enc_monitor_4_motor_ctl        ${catkin_LIBRARIES} -lgpiod)
 target_link_libraries(enc_monitor_4_odom_ctl         ${catkin_LIBRARIES} -lgpiod)
-# target_link_libraries(encoder_monitor                ${catkin_LIBRARIES} -lgpiod)
-target_link_libraries(odometry_estimator             ${catkin_LIBRARIES})
-target_link_libraries(motor_controller_sample        ${catkin_LIBRARIES})
-target_link_libraries(encoder_subscriber             ${catkin_LIBRARIES} -lgpiod)
+
+# target_link_libraries(servo_dynamics                 ${catkin_LIBRARIES})
+# target_link_libraries(servo_controller               ${catkin_LIBRARIES})
+# target_link_libraries(pose_estimator_fusion          ${catkin_LIBRARIES})
+# target_link_libraries(encoder_subscriber             ${catkin_LIBRARIES} -lgpiod)
 
 # Added by Hai Dang Nguyen
-target_link_libraries(motion_planning                ${catkin_LIBRARIES})
-target_link_libraries(trajectory_track_controller    ${catkin_LIBRARIES})
+# target_link_libraries(motion_planning                ${catkin_LIBRARIES})
+# target_link_libraries(trajectory_track_controller    ${catkin_LIBRARIES})
+# target_link_libraries(servo_motor                     ${catkin_LIBRARIES})
+target_link_libraries(ProximitySensor         ${catkin_LIBRARIES} -lgpiod)
 
+# V2
+target_link_libraries(motion_planning_v2             ${catkin_LIBRARIES})
+target_link_libraries(servo_controller_v2            ${catkin_LIBRARIES})
+target_link_libraries(trajectory_track_controller_v2 ${catkin_LIBRARIES})
+target_link_libraries(pose_estimator_fusion_v2       ${catkin_LIBRARIES})
+target_link_libraries(pose_estimator_fusion_v22       ${catkin_LIBRARIES})
 
-# NODES 4 Testing
-# target_link_libraries(test_1                          ${catkin_LIBRARIES})
-target_link_libraries(test_2                          ${catkin_LIBRARIES})
-target_link_libraries(test_3                          ${catkin_LIBRARIES})
+target_link_libraries(motor_controller_v2            ${catkin_LIBRARIES})
+target_link_libraries(motion_planning_v3             ${catkin_LIBRARIES})
+target_link_libraries(trajectory_track_controller_v3 ${catkin_LIBRARIES})
+target_link_libraries(trajectory_track_controller_v22 ${catkin_LIBRARIES})
+
+# copy
+target_link_libraries(motion_planning_v2_copy             ${catkin_LIBRARIES})
+target_link_libraries(trajectory_track_controller_v2_copy ${catkin_LIBRARIES})
+
+# NODES 4 Functional Testing
+target_link_libraries(ref_pwm_publish                 ${catkin_LIBRARIES})
+target_link_libraries(ref_ang_vel_publish             ${catkin_LIBRARIES})
+target_link_libraries(ref_pwm_servo_publish           ${catkin_LIBRARIES})
 
 
 #############

@@ -1,0 +1,77 @@
+<launch>
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="outer_loop_launch_group">
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "ref_pose_publish"
+			output = "screen"
+			type   = "ref_pose_publish"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "pose_controller"
+			output = "screen"
+			type   = "pose_controller"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "motor_controller"
+			output = "screen"
+			type   = "motor_controller"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "motor_dynamics"
+			output = "screen"
+			type   = "motor_dynamics"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "timer_monitor"
+			output = "screen"
+			type   = "timer_monitor"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_r"
+			output = "screen"
+			type   = "encoder_monitor_r"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "encoder_monitor_l"
+			output = "screen"
+			type   = "encoder_monitor_l"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_motor_ctl"
+			output = "screen"
+			type   = "enc_monitor_4_motor_ctl"
+		/>
+
+		<node
+			pkg    = "asclinic_pkg"
+			name   = "enc_monitor_4_odom_ctl"
+			output = "screen"
+			type   = "enc_monitor_4_odom_ctl"
+		/>
+
+        <node
+			pkg    = "asclinic_pkg"
+			name   = "odometry_estimator"
+			output = "screen"
+			type   = "odometry_estimator"
+		/>
+
+	</group>
+
+</launch>

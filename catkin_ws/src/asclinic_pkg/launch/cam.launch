@@ -1,0 +1,40 @@
+<launch>
+
+	<!-- EXAMPLE OF DEFINING AN INPUT ARGUMENT -->
+	<arg name="alsopython" default="false" />
+
+	<!-- START A GROUP WITH NAMESPACE "template" -->
+	<group ns="cam_launch_group">
+		<!-- USE THE INPUT ARGUMENT IN AN IF-STATEMENT  -->
+		<!-- <group if="$(arg alsopython)">
+			<node
+				pkg    = "asclinic_pkg"
+				name   = "template_py_node_minimal"
+				output = "screen"
+				type   = "template_py_node_minimal.py"
+			/>
+		</group> -->
+
+        <node
+            pkg    = "asclinic_pkg"
+            name   = "camera_monitor"
+            output = "screen"
+            type   = "camera_monitor.py"
+        />
+
+        <node
+            pkg    = "asclinic_pkg"
+            name   = "pose_estimator_cam"
+            output = "screen"
+            type   = "pose_estimator_cam.py"
+        />
+
+        <node
+            pkg    = "asclinic_pkg"
+            name   = "timer_monitor"
+            output = "screen"
+            type   = "timer_monitor"
+        />
+	</group>
+
+</launch>

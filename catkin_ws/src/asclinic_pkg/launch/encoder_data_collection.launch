@@ -1,7 +1,7 @@
 <launch>
 
 	<!-- START A GROUP WITH NAMESPACE "template" -->
-	<group ns="amr_launch_group">
+	<group ns="encoder_data_collection_launch_group">
 		<node
 			pkg    = "asclinic_pkg"
 			name   = "timer_monitor"
@@ -18,9 +18,9 @@
 
 		<node
 			pkg    = "asclinic_pkg"
-			name   = "motor_controller_sample"
+			name   = "ref_pwm_publish"
 			output = "screen"
-			type   = "motor_controller_sample"
+			type   = "ref_pwm_publish"
 		/>
 
 		<node
@@ -39,23 +39,11 @@
 
 		<node
 			pkg    = "asclinic_pkg"
-			name   = "enc_monitor_4_motor_ctl"
+			name   = "encoder_subscriber"
 			output = "screen"
-			type   = "enc_monitor_4_motor_ctl"
+			type   = "encoder_subscriber"
 		/>
 
-		<node
-			pkg    = "asclinic_pkg"
-			name   = "enc_monitor_4_odom_ctl"
-			output = "screen"
-			type   = "enc_monitor_4_odom_ctl"
-		/>
-
-		<node
-			pkg    = "asclinic_pkg"
-			name   = "odometry_estimator"
-			output = "screen"
-			type   = "odometry_estimator"
 		/>
 
 	</group>

@@ -22,5 +22,7 @@ Author: Quang Trung Le (987445)
 #include "pololu_smc_g2/pololu_smc_g2.h"
 #include "pololu_smc_g2_encoder/pololu_smc_g2_encoder.h"
 
+#include "math/maths_constants.h"
+
 
 #endif

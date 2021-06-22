@@ -19,24 +19,36 @@ Author: Quang Trung Le (987445)
 class Pololu_SMC_G2_Encoder
 {
     public:
-        enum class Line_Request_Event : int
+        enum Line_Request_Event : int
         {
             RISING_EDGE     = 0,
             FALLING_EDGE    = 1,
             BOTH_EDGES      = 2,
         };
 
-        enum class Channel_State: int
+        enum Line_event
+        {
+            GPIOD_LINE_EVENT_RISING_EDGE = 1,
+            GPIOD_LINE_EVENT_FALLING_EDGE,
+        };
+
+        enum Line_State 
         {
             LOW     = 0,
             HIGH    = 1,
         };
 
+        enum Monitor_Mode: int
+        {
+            POLLING = 0,
+            TRIGGER = 1,
+        };
+
     private:
         // Motor specification
         float angular_velocity_rpm = 0; 
-        int cw_direction = 0;
-        int ccw_direction = 0; 
+        int dir_channel_a2b = 0; // +1: equal cw; -1: equal ccw 
+        int dir_channel_b2a = 0; // +1: equal cw; -1: equal ccw 
         
         struct timespec TIME_OUT = {0, 10000000}; 
 
@@ -66,7 +78,7 @@ class Pololu_SMC_G2_Encoder
 
     public: 
         Pololu_SMC_G2_Encoder();
-        Pololu_SMC_G2_Encoder(int cw_direction);
+        Pololu_SMC_G2_Encoder(int dir_channel_a2b);
 
     public: // getters and setters
         void set_angular_velocity_rpm(float angular_velocity_rpm);
@@ -82,12 +94,20 @@ class Pololu_SMC_G2_Encoder
         float get_rotation_angle_rev(float sampling_period_in_sec); 
 
         // Getters & Setters
-        int get_cw_direction();
-        int get_ccw_direction();
+        // int get_cw_direction();
+        // int get_ccw_direction();
+        // void set_cw_direction(int cw_direction);
+        // void set_ccw_direction(int ccw_direction);
+
+        int get_dir_channel_a2b();
+        int get_dir_channel_b2a();
+
         int get_line_channel_a();
         int get_line_channel_b();
-        void set_cw_direction(int cw_direction);
-        void set_ccw_direction(int ccw_direction);
+
+        void set_dir_channel_a2b(int dir_channel_a2b);
+        void set_dir_channel_b2a(int dir_channel_b2a);
+
         void set_line_channel_a(int line_channel_a);
         void set_line_channel_b(int line_channel_b);
 
@@ -100,8 +120,15 @@ class Pololu_SMC_G2_Encoder
 
         int monitor_encoder_trigger_falling_edge_wo_debounce(struct gpiod_line_event event);
         int monitor_encoder_trigger_falling_edge_w_time_debounce(struct gpiod_line_event event);
+        int monitor_encoder_trigger_both_edges_wo_debounce(struct gpiod_line_event event);
         int monitor_encoder_polling_w_df_debounce();
         int monitor_encoder_polling_w_sw_debounce();
+
+
+
+        int get_channel_event_type(struct gpiod_line *gpiod_line_channel, struct gpiod_line_event event);
+        int get_channel_a_event_type(struct gpiod_line_event event);
+        int get_channel_b_event_type(struct gpiod_line_event event);
 };
 
 #endif
