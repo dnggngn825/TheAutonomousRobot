@@ -2,6 +2,8 @@
 
 This is the source code for the project as a part of the **[ELEN90090 - Autonomous System Clinic](https://handbook.unimelb.edu.au/subjects/elen90090)** subject at the University of Melbourne. This project is written in C++ and Python as multiple [ROS](https://www.ros.org/) (Robotics Operation System) nodes, developed to run on the NVIDIA Jetson Xavier. The repository currently also includes code which has been run on the NVIDIA Jetson Xavier, and using desktop or laptop Ubuntu installations.
 
+The template of the repo of this project has been provided by **Dr. Paul Beuchat** (who is also the subject coordinator) via [Gitlab](https://gitlab.unimelb.edu.au/asclinic/asclinic-system)
+
 ## About
 ### Objective
 Design software pipeline for the robot to perform the task in a small-scale warehouse. Basically, the robot is required to maneuver to a dispenser for picking up items and to a receptacle for droping off.
