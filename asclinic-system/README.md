@@ -7,7 +7,7 @@ The template of the repo of this project has been provided by **Dr. Paul Beuchat
 ## Table of Content
 - [About](#About)
     - [Objective](#Objective)
-    - [Project Overview](#Project Overview)
+    - [Project Overview](#Project-Overview)
     - [Contributor](#Contributor)
 - [Get Started](#Get-Started)
     - [Installation Instruction](#Installtion-Instruction)
