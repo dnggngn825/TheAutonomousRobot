@@ -53,3 +53,14 @@ Then we need to run ```roscore``` by
 $ roscore
 ```
 and let it run on a dedicated Terminal.
+
+Now, open two Terminals and follow the same directory path to add several environment variables for ROS to work
+```bash
+$ cd TheAutonomousRobot/asclinic-system/catkin_ws
+$ source devel/setup.bash
+```
+On Terminal 1, we launch the robot to start and wait for user command. By running the ```2nd_square_path_test_v2.launch``` file, all the nodes are on and waiting for message to be sent through. These nodes are in charge of different functionalities of the robot such as **motion planning**, **trajectory tracking**, **motor control**, **camera scan**, **sensing and localizing**.
+```bash
+$ roslaunch asclinic_pkg 2nd_square_path_test_v2.launch
+```
+
