@@ -18,10 +18,16 @@ At the end of these instructions, you should be to compile and run the applicati
 
 #### ROS Installation
 The link below provides the instruction on how to install ROS on Linux or Unbuntu (for Windows desktop).
+
 ROS Noetic Installation Guide: http://wiki.ros.org/noetic/Installation
 
 ### How to get the project
 On the host, clone the project from git repository:
 ```bash
 $ git clone https://github.com/dnggngn825/TheAutonomousRobot.git
+```
+
+Then access to ```bash catkin_ws``` folder on Terminal using
+```bash
+$ cd TheAutonomousRobot/asclinic-system/catkin_ws
 ```
