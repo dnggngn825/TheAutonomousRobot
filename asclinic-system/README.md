@@ -4,7 +4,7 @@ This is the source code for the project as a part of the **[ELEN90090 - Autonomo
 
 The template of the repo of this project has been provided by **Dr. Paul Beuchat** (who is also the subject coordinator) via [Gitlab](https://gitlab.unimelb.edu.au/asclinic/asclinic-system)
 
-Final Report link: [Report](../Report/ELEN90090_Project_Report.pdf)
+Final Report link: [Report](https://github.com/dnggngn825/TheAutonomousRobot/tree/main/Final%20Report)
 
 ## Table of Content
 - [About](#About)
