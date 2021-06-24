@@ -35,7 +35,7 @@ $ git clone https://github.com/dnggngn825/TheAutonomousRobot.git
 ```
 
 ### How to compile it
-Then access to ```catkin_ws``` folder on Terminal using
+Firstly, we need access to ```catkin_ws``` folder on Terminal using
 ```bash
 $ cd TheAutonomousRobot/asclinic-system/catkin_ws
 ```
