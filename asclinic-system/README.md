@@ -4,6 +4,9 @@ This is the source code for the project as a part of the **[ELEN90090 - Autonomo
 
 The template of the repo of this project has been provided by **Dr. Paul Beuchat** (who is also the subject coordinator) via [Gitlab](https://gitlab.unimelb.edu.au/asclinic/asclinic-system)
 
+## Table of Content
+- [About](#About)
+
 ## About
 ### Objective
 Design software pipeline for the robot to perform the task in a small-scale warehouse. Basically, the robot is required to maneuver to a dispenser for picking up items and to a receptacle for droping off.
