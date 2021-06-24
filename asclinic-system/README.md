@@ -7,6 +7,15 @@ The template of the repo of this project has been provided by **Dr. Paul Beuchat
 ## Table of Content
 - [About](#About)
     - [Objective](#Objective)
+    - [Project Overview](#Project Overview)
+    - [Contributor](#Contributor)
+- [Get Started](#Get Started)
+    - [Installation Instruction](#Installtion Instruction)
+        - [ROS Installation](#ROS Installation)
+    - [Clone the project](#How to get the project)
+    - [Compile the project](#How to compile it)
+    - [Run the project](#How to run it)
+    - [Safety Feature](#Emergency Stop)
 
 ## About
 ### Objective
