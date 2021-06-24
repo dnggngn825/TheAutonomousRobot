@@ -32,6 +32,7 @@ On the host, clone the project from git repository:
 $ git clone https://github.com/dnggngn825/TheAutonomousRobot.git
 ```
 
+### How to compile it
 Then access to ```catkin_ws``` folder on Terminal using
 ```bash
 $ cd TheAutonomousRobot/asclinic-system/catkin_ws
@@ -41,3 +42,14 @@ Then, on the same Terminal, we will compile the ```asclinic_pkg``` using
 $ catkin_make
 ```
 _Note: The command ```catkin_make``` needs to run to re-compile the package whenever there is any changes to the C++ files._
+
+### How to run it
+Before running it, we need to add several environment variables that ROS needs in order to work. On the same Terminal that we run ```catkin_make```, enter
+```bash
+$ source devel/setup.bash
+```
+Then we need to run ```roscore``` by
+```bash
+$ roscore
+```
+and let it run on a dedicated Terminal.
