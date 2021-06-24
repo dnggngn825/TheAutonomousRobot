@@ -74,3 +74,9 @@ or
 $ rostopic pub --once /get_directory pathCommand {"21","11"}
 ```
 with 2 requested cycle. The first one will be picking up items from dispenser 2 and dropping off at receptacle 1 (1st cycle). Then it will return to the start position before perfroming the next cycle, which is picking up items from dispenser 1 and dropping off at receptacle 1 (2nd cycle).
+
+### Emergency Stop
+For safety purpose, a dedicated topic ```/state_indicator``` was created to run on the back on ```motion_planning``` node for the user to interupt at any time with a single command line to switch the state of the robot. The idea behind this is to continuously publish a message to that topic and it will switch the state automatically within 3s.
+```bash
+$ rostopic pub /state_indicator std_msgs::String "stop"
+```
