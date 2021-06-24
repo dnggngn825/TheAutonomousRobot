@@ -40,3 +40,4 @@ Then, on the same Terminal, we will compile the ```asclinic_pkg``` using
 ```bash
 $ catkin_make
 ```
+_Note: The command ```catkin_make``` needs to run to re-compile the package whenever there is any changes to the C++ files._
