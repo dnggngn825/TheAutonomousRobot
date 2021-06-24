@@ -27,7 +27,11 @@ On the host, clone the project from git repository:
 $ git clone https://github.com/dnggngn825/TheAutonomousRobot.git
 ```
 
-Then access to ```bash catkin_ws``` folder on Terminal using
+Then access to ```catkin_ws``` folder on Terminal using
 ```bash
 $ cd TheAutonomousRobot/asclinic-system/catkin_ws
+```
+Then, on the same Terminal, we will compile the ```asclinic_pkg``` using
+```bash
+$ catkin_make
 ```
