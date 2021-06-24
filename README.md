@@ -1,8 +1,9 @@
 # The Autonomous Warehouse Robot
 
-This is the source code for the project as a part of the **[ELEN90090 - Autonomous System Clinic](https://handbook.unimelb.edu.au/subjects/elen90090)** subject at the University of Melbourne. This project is written in C++ and Python as multiple ROS (Robotics Operation System) nodes, developed to run on the NVIDIA Jetson Xavier. The repository currently also includes code which has been run on the NVIDIA Jetson Xavier, and using desktop or laptop Ubuntu installations.
+This is the source code for the project as a part of the **[ELEN90090 - Autonomous System Clinic](https://handbook.unimelb.edu.au/subjects/elen90090)** subject at the University of Melbourne. This project is written in C++ and Python as multiple [ROS](https://www.ros.org/) (Robotics Operation System) nodes, developed to run on the NVIDIA Jetson Xavier. The repository currently also includes code which has been run on the NVIDIA Jetson Xavier, and using desktop or laptop Ubuntu installations.
 
-## Objective
+## About
+### Objective
 Design software pipeline for the robot to perform the task in a small-scale warehouse. Basically, the robot is required to maneuver to a dispenser for picking up items and to a receptacle for droping off.
 
 ### Project Overview
@@ -15,9 +16,9 @@ At the end of these instructions, you should be to compile and run the applicati
 
 ### Installation Instructions
 
-#### Host Installation
-
 #### ROS Installation
+The link below provides the instruction on how to install ROS on Linux or Unbuntu (for Windows desktop).
+ROS Noetic Installation Guide: http://wiki.ros.org/noetic/Installation
 
 ### How to get the project
 On the host, clone the project from git repository:
