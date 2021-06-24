@@ -12,10 +12,10 @@ The template of the repo of this project has been provided by **Dr. Paul Beuchat
 - [Get Started](#Get-Started)
     - [Installation Instruction](#Installtion-Instruction)
         - [ROS Installation](#ROS-Installation)
-    - [Clone the project](#How to get the project)
-    - [Compile the project](#How to compile it)
-    - [Run the project](#How to run it)
-    - [Safety Feature](#Emergency Stop)
+    - [Clone the project](#How-to-get-the-project)
+    - [Compile the project](#How-to-compile-it)
+    - [Run the project](#How-to-run-it)
+    - [Safety Feature](#Emergency-Stop)
 
 ## About
 ### Objective
