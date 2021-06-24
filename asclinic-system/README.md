@@ -9,6 +9,11 @@ Design software pipeline for the robot to perform the task in a small-scale ware
 ### Project Overview
 This project focuses on control and software design, based on the given robot platform. The robotic prototype will then be applied to work in a warehouse of no obstacles. However, there are two NOACCESS zones in the layout of warehouse. This robot contacts with the collection areas and receptacle areas via the markers, which helps to determine the object categories. Once the robot approaches these areas and a requested signal was sent, the items are manually dispensed.
 
+### Contributor
+- Hai Dang Nguyen (hain4@student.unimelb.edu.au)
+- Hoang Viet Pham (hoangp2@student.unimelb.edu.au)
+- Quang Trung Le (quangtrungl@student.unimelb.edu.au)
+
 ## Get Started
 The following instructions detail the building and testing of a simple task cycle of the robot.
 
