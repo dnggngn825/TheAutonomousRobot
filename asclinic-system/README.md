@@ -63,4 +63,14 @@ On Terminal 1, we launch the robot to start and wait for user command. By runnin
 ```bash
 $ roslaunch asclinic_pkg 2nd_square_path_test_v2.launch
 ```
+We will leave Terminal 1 to run on itself, while we move to Terminal 2 and publish a message to ```/get_directory``` for the robot to start the task. The message type for this is ```pathCommand``` which is a customize ```.msg``` for presenting an array of 2-digit integer.
+```bash
+$ rostopic pub --once /get_directory pathCommand {"11"}
+```
+for picking up items from dispenser 1 and dropping off at receptacle 1 (one cycle)
 
+or
+```bash
+$ rostopic pub --once /get_directory pathCommand {"21","11"}
+```
+with 2 requested cycle. The first one will be picking up items from dispenser 2 and dropping off at receptacle 1 (1st cycle). Then it will return to the start position before perfroming the next cycle, which is picking up items from dispenser 1 and dropping off at receptacle 1 (2nd cycle).
