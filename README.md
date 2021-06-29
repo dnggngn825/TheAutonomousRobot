@@ -6,6 +6,8 @@ The template of the repo of this project has been provided by **Dr. Paul Beuchat
 
 Final Report link: [Report](https://github.com/dnggngn825/TheAutonomousRobot/tree/main/Final%20Report)
 
+Further Information: [Document](https://dangnguyen825.netlify.app/projects)
+
 ## Table of Content
 - [About](#About)
     - [Objective](#Objective)
